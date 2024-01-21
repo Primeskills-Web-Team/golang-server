@@ -7,5 +7,5 @@ type (
 	NoRouteHandler         func(c *gin.Context)
 	ExceptionHandler       func(c *gin.Context, err interface{}, resource string)
 	MiddlewareHandler      func(c *gin.Context)
-	RouterHandler          func(c *gin.Context)
+	RouterHandler          func(c *gin.Engine)
 )

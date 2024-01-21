@@ -98,6 +98,10 @@ func (p *PrimeskillsServer) RunServer(port string, resource string) {
 		}))
 	}
 
+	if p.RouterHandler != nil {
+		p.RouterHandler(p.EngineServer)
+	}
+
 	err := p.EngineServer.Run(fmt.Sprintf("0.0.0.0:%s", port))
 	if err != nil {
 		log.Fatalln("Failed start server", err.Error())
