@@ -63,7 +63,7 @@ func (p *PrimeskillsServer) SetMiddleware(middleware MiddlewareHandler) {
 	p.MiddlewareHandler = middleware
 }
 
-func (p *PrimeskillsServer) RunServer(port string) {
+func (p *PrimeskillsServer) RunServer(port string, resource string) {
 	logrus.Infoln("You can running in", "http://localhost:"+port)
 
 	if p.MethodeNotFoundHandler != nil {
@@ -88,7 +88,7 @@ func (p *PrimeskillsServer) RunServer(port string) {
 
 	if p.ExceptionHandler != nil {
 		p.EngineServer.Use(gin.CustomRecovery(func(c *gin.Context, err any) {
-			p.ExceptionHandler(c, err)
+			p.ExceptionHandler(c, err, resource)
 			return
 		}))
 	} else {
